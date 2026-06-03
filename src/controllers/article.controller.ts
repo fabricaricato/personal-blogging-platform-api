@@ -3,12 +3,16 @@ import Article from '../models/Article';
 
 const getAllArticles = async (req: Request, res: Response) => {
   try {
-    const articles = await Article.find();
+    const filter: any = {};
+    if (req.query.tag) {
+      filter.tags = req.query.tag;
+    }
+    const articles = await Article.find(filter);
     res.status(200).json(articles);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching articles', error });
   }
-}; 
+};
 
 const createArticle = async (req: Request, res: Response) => {
   try {
