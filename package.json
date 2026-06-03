@@ -1,15 +1,14 @@
 {
   "name": "blog-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "personal-blogging-platform-api",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --respawn ./src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Fabrizio Caricato",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
