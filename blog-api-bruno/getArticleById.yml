@@ -1,0 +1,15 @@
+info:
+  name: getArticleById
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://localhost:2000/api/articles/6a1fe13df697439d5fb93c5e
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

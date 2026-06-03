@@ -1,0 +1,21 @@
+info:
+  name: updateArticle
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: http://localhost:2000/api/articles/6a1fe64019c8b036f67a344b
+  body:
+    type: json
+    data: |-
+      {
+        "title": "sssss"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

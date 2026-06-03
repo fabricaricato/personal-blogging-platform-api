@@ -1,0 +1,23 @@
+info:
+  name: createArticles
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:2000/api/articles
+  body:
+    type: json
+    data: |-
+      {
+        "title": "test-2",
+        "content": "After trying several linear switches, I decided to lube the Cream Yellows. The difference in sound and typing smoothness is night and day. I highly recommend them for custom keyboards like the 5075S.",
+        "tags": ["linux"]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
