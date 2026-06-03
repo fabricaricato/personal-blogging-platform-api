@@ -2,11 +2,17 @@ import { connectDb } from "./config/connectDb";
 import express, { Request, Response } from "express"
 import cors from "cors"
 import {articleRouter} from "./routes/article.routes"
+import { config } from "dotenv";
+
+config()
+connectDb()
+
+const PORT = process.env.PORT
 
 const server = express()
 
-server.use(cors())      
-server.use(express.json()) 
+server.use(cors())
+server.use(express.json())
 
 server.get("/", (req: Request, res: Response) => {
     res.send("Hello World!")
@@ -14,11 +20,15 @@ server.get("/", (req: Request, res: Response) => {
 
 server.use('/api/articles', articleRouter)
 
-server.listen(process.env.PORT, async () => {
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
     try {
-        await connectDb()
-        console.log(`Server is running on port ${process.env.PORT}`)
+      console.log(`Server listening on port: ${PORT}`)
     } catch (error) {
-        console.error("Failed to start server:", error)
+      const err = error as Error
+      console.log(`Port listening failure, error message: ${err.message}`)
     }
-})
+  })
+}
+
+export default server
