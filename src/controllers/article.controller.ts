@@ -23,4 +23,44 @@ const createArticle = async (req: Request, res: Response) => {
   }
 };
 
-export {getAllArticles, createArticle};
+const getArticleById = async (req: Request, res: Response) => {
+  try {
+    const article = await Article.findById(req.params.id);
+    if (!article) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+    res.status(200).json(article);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching article', error });
+  }
+};
+
+const updateArticle = async (req: Request, res: Response) => {
+  try {
+    const updatedArticle = await Article.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updatedArticle) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+    res.status(200).json(updatedArticle);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating article', error });
+  }
+};
+
+const deleteArticle = async (req: Request, res: Response) => {
+  try {
+    const deletedArticle = await Article.findByIdAndDelete(req.params.id);
+    if (!deletedArticle) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+    res.status(200).json({ message: 'Article deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting article', error });
+  }
+};
+
+export { getAllArticles, createArticle, getArticleById, updateArticle, deleteArticle };
